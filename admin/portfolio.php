@@ -389,7 +389,11 @@ include 'header_desktop.php';
 									<div class="form-group">
 										<label>Photo</label>
 										<input type="file" name="fileToUpload" id="fileToUpload" class="form-control" required>
-									</div>					
+									</div>	
+									<div class="form-group">
+										
+										<img style="height:200px; width: 200px;" src="<?php echo $row['image_path']; ?>" alt="">
+									</div>				
 								</div>
 								<div class="modal-footer">
 									<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
