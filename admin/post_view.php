@@ -2,9 +2,6 @@
 
 require '../class/post.class.php';
 
-$model = new PostQuery;
-$insert = $model->postinsert();
-
 ?>
 
 <?php
@@ -28,20 +25,31 @@ include 'header.php';
             <div class="main-content">
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
+                        
                         <div class="row">
-						<form action="" method="post" enctype="multipart/form-data" class="form-horizontal>
+        
+               
+                        <form action="" method="post" enctype="multipart/form-data" class="form-horizontal>
+                        
                          <div class="col-lg-12">
                                 <div class="card">
                                     <div class="card-header">
                                         <strong>New</strong>
                                         <small> Post</small>
                                     </div>
+                  
 
  
                                     <div class="card-body card-block">
                                         <div class="form-group">
+                                        <?php 
+
+                                    $model = new PostQuery();
+                                    $rows = $model->postfetch();        
+                                    foreach ($rows as $row) {
+                                        ?>
                                             <label for="title" class=" form-control-label">Title</label>
-                                            <input type="text" name="title" id="title" placeholder="Enter your title" class="form-control">
+                                            <input type="text" name="title" id="title" value="<?php echo $row['title']; ?>" class="form-control">
                                         </div>
 
                                         <div class="form-group">
@@ -50,32 +58,25 @@ include 'header.php';
 									</div>
 
 
-                                        <textarea name="body" id="body"></textarea>
-                                            <script>
-                                            $('#body').summernote({
-                                                placeholder: 'Your Post Goes Here',
-                                                tabsize: 2,
-                                                height: 200,                 // set editor height
-                                                width: "100%",                 // set editor height
-                                                minHeight: null,             // set minimum height of editor
-                                                maxHeight: null,             // set maximum height of editor
-                                                dialogsInBody: true
-                                            });
-                                            </script>
-
+                                        <textarea name="body" id="body" value="<?php echo $row['title']; ?>></textarea>
+                                           
 
                                             
                                         <div class="form-group">
                                     
                                         <input type="submit" id="post" name="post" class="btn btn-info" value="Post">
                                     </div>
+                                    <?php
+                        }
+                        ?>
                                 </div>
 
                                 
                             </div>
                         </div>
+                 
                          </form>
-                           
+            
 
 
                         <div class="row">
@@ -96,7 +97,18 @@ include 'header.php';
     </div>
 
 
- 
+    <script>
+                                            $('#body').summernote({
+                                                placeholder: 'Your Post Goes Here',
+                                                tabsize: 2,
+                                                height: 200,                 // set editor height
+                                                width: "100%",                 // set editor height
+                                                minHeight: null,             // set minimum height of editor
+                                                maxHeight: null,             // set maximum height of editor
+                                                dialogsInBody: true
+                                            });
+                                            </script>
+
    
    <?php
 

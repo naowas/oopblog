@@ -1,9 +1,7 @@
 <?php
 
-require '../class/functions.php';
+require '../class/post.class.php';
 
-$model = new NaowasQuery;
-$insert = $model->insert();
 
 
 ?>
@@ -281,9 +279,8 @@ include 'header_desktop.php';
 												<label for="selectAll"></label>
 											</span>
 										</th>
-										<th>Name</th>
+										<th>Titlr</th>
 										<th>Description</th>
-										<th>Link</th>
 										<th>Photo</th>
 										<th>Actions</th>
 									</tr>
@@ -294,8 +291,8 @@ include 'header_desktop.php';
 
 								<?php 
 
-								$model = new NaowasQuery();
-								$rows = $model->fetch();        
+								$model = new PostQuery();
+								$rows = $model->postfetch();        
                                 if (!empty($rows)) {
                                     foreach ($rows as $row) {
                             	  ?>
@@ -308,13 +305,12 @@ include 'header_desktop.php';
 												<label for="checkbox4"></label>
 											</span>
 										</td>
-										<td><?php echo $row['name']; ?></td>
-										<td><?php echo $row['description']; ?></td>
-										<td><?php echo $row['link']; ?></td>
-										<td><img style="height:50px; width: 50px;" src="<?php echo $row['image_path']; ?>" alt="">
+										<td><?php echo $row['title']; ?></td>
+										<td><?php echo $row['body']; ?></td>
+										<td><img style="height:50px; width: 50px;" src="<?php echo $row['image']; ?>" alt="">
 										</td>
 										<td>
-											<a href="#editEmployeeModal<?php echo $row['id']; ?>" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+											<a href="post_view.php?id=<?php echo $row['id']; ?>" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
 											<a href="#deleteEmployeeModal<?php echo $row['id']; ?>" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
 										</td>
 									</tr>
@@ -348,204 +344,9 @@ include 'header_desktop.php';
 
 
 
-
-						<?php 
-
-			$model = new NaowasQuery();
-			$rows = $model->fetch();        
-			if (!empty($rows)) {
-				foreach ($rows as $row) {
-
-					if (isset($_POST['port_edit'])) {
-					 
-						$id = $_POST['edit_id'];
-						$name = $_POST['name'];
-						$bio = $_POST['bio'];
-						$link = $_POST['link'];
-						$object = new NaowasQuery();
-					 
-						$object->Update($name, $bio, $link, $id);
-					}
-
-
-            
-        
-					?>			
-				
-			<!-- modal large -->
-			<div class="modal fade" id="editEmployeeModal<?php echo $row['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="largeModalLabel" aria-hidden="true"> 
-
-				<div class="modal-dialog modal-lg" role="document">
-					<div class="modal-content">
-						
-						<div class="modal-body">
-						<form action="" method="post" enctype="multipart/form-data" class="form-horizontal>
-								<div class="modal-header">						
-									<h4 class="modal-title">Edit Portfolio</h4>
-									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-								</div>
-								<div class="modal-body">	
-								<input type="hidden" id="id" name="edit_id" value="<?php echo $row['id']; ?>">				
-									<div class="form-group">
-										<label>Name</label>
-										<input type="text" id="name" name="name" class="form-control" value="<?php echo $row['name']; ?>" > 
-									</div>
-									<div class="form-group">
-										<label>Description</label>
-										<input type="text" id="bio" name="bio" class="form-control" value="<?php echo $row['description']; ?>">
-									</div>
-									<div class="form-group">
-										<label>Findout link</label>
-										<input type="text" id="link" name="link" class="form-control" value="<?php echo $row['link']; ?>">
-									</div>
-									
-									<div class="form-group">
-										<label>Photo</label>
-										<input type="file" name="fileToUpload" id="fileToUpload" class="form-control" >
-									</div>	
-									<div class="form-group">
-										
-										<img style="height:200px; width: 170px;" src="<?php echo $row['image_path']; ?>" alt="">
-									</div>				
-								</div>
-								<div class="modal-footer">
-									<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-									<input type="submit" id="edit_port" name="port_edit" class="btn btn-info" value="Save">
-								</div>
-							</form>
-						</div>
-						
-					</div>
-				</div>
-			</div>
-				<?php
-					}}
-					?>
-			<!-- end modal large -->
-
-
-				<!-- modal medium -->
-				<div class="modal fade" id="addEmployeeModal" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
-					<div class="modal-dialog modal-lg" role="document">
-						<div class="modal-content">
-							<!-- <div class="modal-header">
-								<h5 class="modal-title" id="mediumModalLabel">Medium Modal</h5>
-								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-									<span aria-hidden="true">&times;</span>
-								</button>
-							</div> -->
-							<div class="modal-body">
-								<form action="" method="post" enctype="multipart/form-data" class="form-horizontal>
-									<div class="modal-header">						
-										<h4 class="modal-title">Add Employee</h4>
-										<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-									</div>
-									<div class="modal-body">					
-										<div class="form-group">
-											<label>Name</label>
-                                            <input type="text" id="name" name="name" placeholder="Your Name Here" class="form-control">
-										</div>
-										<div class="form-group">
-											<label>Description</label>
-                                            <input type="text" id="bio" name="bio" placeholder="Your Shrot Description Here" class="form-control">
-										</div>
-										<div class="form-group">
-											<label>Findout link</label>
-                                            <input type="text" id="find_link" name="find_link" placeholder="http://link.com" class="form-control">
-										</div>
-										
-										<div class="form-group">
-											<label>Photo</label>
-                                            <input type="file" name="fileToUpload" id="fileToUpload" multiple="" class="form-control-file">
-										</div>					
-									</div>
-									<div class="modal-footer">
-										<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-										<input type="submit" name="submit" class="btn btn-success" value="Add">
-									</div>
-								</form>
-							</div>
-							
-						</div>
-					</div>
-				</div>
-				<!-- end modal medium -->
-
-				<?php 
-
-$model = new NaowasQuery();
-$rows = $model->fetch();        
-if (!empty($rows)) {
-    foreach ($rows as $row) {
-
-		if(isset($_POST['delete'])){
-			
-			$filepath=  $_POST['image_path'];
-			$id = $_POST['delete_id'];
-			$del = $model->delete($id,$filepath);
-            
-
-
-            
-        }
-        ?>		
-	<!-- modal small -->
-	<div class="modal fade" id="deleteEmployeeModal<?php echo $row['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="smallmodalLabel" aria-hidden="true">
-		<div class="modal-dialog modal-sm" role="document">
-			<div class="modal-content">
-				
-				<div class="modal-body">
-					<form action="" method="post">
-						<div class="modal-header">						
-							<h4 class="modal-title">Delete Employee</h4>
-							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-						</div>
-						<div class="modal-body">
-						<input type="hidden" name="delete_id" value="<?php echo $row['id']; ?>">
-							<p>Are you sure you want to delete these Records?</p>
-							<p class="text-warning"><small>This action cannot be undone.</small></p>
-						</div>
-						<div class="modal-footer">
-							<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-							<input type="submit" name="delete" class="btn btn-danger" value="Delete">
-						</div>
-					</form>
-				</div>
-				
-			
-			</div>
-		</div>
-	</div>
-	<?php
-	}}
-	?>
-	<!-- end modal small -->
-
+		
 
 	
-	<!-- Delete Modal HTML -->
-<!-- 
-	<div id="deleteEmployeeModal" class="modal fade">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<form method="POST">
-					<div class="modal-header">						
-						<h4 class="modal-title">Delete Employee</h4>
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					</div>
-					<div class="modal-body">					
-						<p>Are you sure you want to delete these Records?</p>
-						<p class="text-warning"><small>This action cannot be undone.</small></p>
-					</div>
-					<div class="modal-footer">
-						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-						<input type="submit" name="del_all" class="btn btn-danger" value="Delete">
-					</div>
-				</form>
-			</div>
-		</div>
-	</div> -->
-
 		</div>
 		<!-- END PAGE CONTAINER-->
 	

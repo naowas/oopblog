@@ -77,7 +77,7 @@ class NaowasQuery extends Database
         return $data = $this->conn->query($query);
     }
 
-    public function delete($id , $filepath)
+    public function delete($id, $filepath)
     {
         $query = $this->conn->prepare("DELETE FROM tbl_portfolio WHERE id = :delete_id");
         $query->bindParam("delete_id", $id, PDO::PARAM_STR);
@@ -117,6 +117,8 @@ class NaowasQuery extends Database
         $query->execute();
         echo "<script>alert('Record Has been updated')</script>";
         echo "<script>window.open('portfolio.php','_self')</script>";
-
     }
-}    
+
+
+    
+}
