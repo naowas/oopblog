@@ -315,7 +315,7 @@ include 'header_desktop.php';
 										<td><?php echo $row['description']; ?></td>
 										<td><?php echo $row['link']; ?></td>
 										<td><img style="height:50px; width: 50px;" src="<?php echo $row['image_path']; ?>" alt="">
-</td>
+										</td>
 										<td>
 											<a href="#editEmployeeModal<?php echo $row['id']; ?>" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
 											<a href="#deleteEmployeeModal<?php echo $row['id']; ?>" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
@@ -358,6 +358,21 @@ include 'header_desktop.php';
 			$rows = $model->fetch();        
 			if (!empty($rows)) {
 				foreach ($rows as $row) {
+
+					if (isset($_POST['port_edit'])) {
+					 
+						$id = $_POST['edit_id'];
+						$name = $_POST['name'];
+						$bio = $_POST['bio'];
+						$link = $_POST['link'];
+						$object = new NaowasQuery();
+					 
+						$object->Update($name, $bio, $link, $id);
+					}
+
+
+            
+        
 					?>			
 				
 			<!-- modal large -->
@@ -367,37 +382,38 @@ include 'header_desktop.php';
 					<div class="modal-content">
 						
 						<div class="modal-body">
-							<form>
+						<form action="" method="post" enctype="multipart/form-data" class="form-horizontal>
 								<div class="modal-header">						
 									<h4 class="modal-title">Edit Portfolio</h4>
 									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 								</div>
-								<div class="modal-body">					
+								<div class="modal-body">	
+								<input type="hidden" id="id" name="edit_id" value="<?php echo $row['id']; ?>">				
 									<div class="form-group">
 										<label>Name</label>
-										<input type="text" class="form-control" value="<?php echo $row['name']; ?>" required> 
+										<input type="text" id="name" name="name" class="form-control" value="<?php echo $row['name']; ?>" > 
 									</div>
 									<div class="form-group">
 										<label>Description</label>
-										<input type="text" class="form-control" value="<?php echo $row['description']; ?>">
+										<input type="text" id="bio" name="bio" class="form-control" value="<?php echo $row['description']; ?>">
 									</div>
 									<div class="form-group">
 										<label>Findout link</label>
-										<input type="text" class="form-control" value="<?php echo $row['link']; ?>">
+										<input type="text" id="link" name="link" class="form-control" value="<?php echo $row['link']; ?>">
 									</div>
 									
 									<div class="form-group">
 										<label>Photo</label>
-										<input type="file" name="fileToUpload" id="fileToUpload" class="form-control" required>
+										<input type="file" name="fileToUpload" id="fileToUpload" class="form-control" >
 									</div>	
 									<div class="form-group">
 										
-										<img style="height:200px; width: 200px;" src="<?php echo $row['image_path']; ?>" alt="">
+										<img style="height:200px; width: 170px;" src="<?php echo $row['image_path']; ?>" alt="">
 									</div>				
 								</div>
 								<div class="modal-footer">
 									<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-									<input type="submit" class="btn btn-info" value="Save">
+									<input type="submit" id="edit_port" name="port_edit" class="btn btn-info" value="Save">
 								</div>
 							</form>
 						</div>
@@ -466,10 +482,10 @@ if (!empty($rows)) {
     foreach ($rows as $row) {
 
 		if(isset($_POST['delete'])){
-
-
+			
+			$filepath=  $_POST['image_path'];
 			$id = $_POST['delete_id'];
-			$del = $model->delete($id);
+			$del = $model->delete($id,$filepath);
             
 
 
