@@ -42,12 +42,15 @@ include 'header.php';
  
                                     <div class="card-body card-block">
                                         <div class="form-group">
-                                        <?php 
 
-                                    $model = new PostQuery();
-                                    $rows = $model->postfetch();        
-                                    foreach ($rows as $row) {
-                                        ?>
+                                       <?php
+
+                                        $model = new PostQuery;
+                                        $id = $_REQUEST['id'];
+                                        $row = $model->edit($id);
+                                       
+                                        ?> 
+                                    
                                             <label for="title" class=" form-control-label">Title</label>
                                             <input type="text" name="title" id="title" value="<?php echo $row['title']; ?>" class="form-control">
                                         </div>
@@ -58,7 +61,7 @@ include 'header.php';
 									</div>
 
 
-                                        <textarea name="body" id="body" value="<?php echo $row['title']; ?>></textarea>
+                                        <textarea name="body" id="body"><?php echo $row['body']; ?></textarea>
                                            
 
                                             
@@ -66,9 +69,7 @@ include 'header.php';
                                     
                                         <input type="submit" id="post" name="post" class="btn btn-info" value="Post">
                                     </div>
-                                    <?php
-                        }
-                        ?>
+                          
                                 </div>
 
                                 

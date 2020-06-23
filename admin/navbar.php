@@ -149,7 +149,7 @@
                                 </li>
 
                                 <li>
-                                    <a href="index.html">Manage Post</a>
+                                    <a href="post_manage.php">Manage Post</a>
                                 </li>
 
                                 

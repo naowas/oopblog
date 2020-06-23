@@ -76,4 +76,15 @@ class PostQuery extends Database
         $query = "SELECT * FROM tbl_post";
         return $data = $this->conn->query($query);
     }
+
+
+    public function edit($id)
+	{
+		$data = $this->conn->prepare("SELECT * FROM tbl_post WHERE id = :id");
+		$data->execute(array (':id' => $id));
+
+		foreach ($data as $value) {
+			return $value;
+		}
+	}
 }
