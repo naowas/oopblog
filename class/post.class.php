@@ -86,5 +86,18 @@ class PostQuery extends Database
 		foreach ($data as $value) {
 			return $value;
 		}
-	}
+    }
+    
+
+    public function delete($id)
+    {
+        $query = $this->conn->prepare("DELETE FROM tbl_post WHERE id = :id");
+        $query->bindParam("id", $id, PDO::PARAM_STR);
+        $query->execute();
+        //unlink("uploads/$filepath");
+
+
+        echo "<script>alert('Record Deleted')</script>";
+        echo "<script>window.open('post_manage.php','_self')</script>";
+    }
 }

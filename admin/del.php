@@ -1,7 +1,7 @@
 <?php 
-include '../class/functions.php';
+include '../class/post.class.php';
 
-$model = new NaowasQuery;
+$model = new PostQuery;
 $id = $_REQUEST['id'];
 $delete = $model->delete($id);
 ?>

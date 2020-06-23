@@ -265,7 +265,7 @@ include 'header_desktop.php';
 										<h2>Manage <b>Portfolio</b></h2>
 									</div>
 									<div class="col-sm-6">
-										<a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Record</span></a>
+										<a href="new_post.php" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Record</span></a>
 										<a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>						
 									</div>
 								</div>
@@ -295,6 +295,18 @@ include 'header_desktop.php';
 								$rows = $model->postfetch();        
                                 if (!empty($rows)) {
                                     foreach ($rows as $row) {
+
+
+										if(isset($_POST['delete'])){
+			
+						
+											$id = $_REQUEST['id'];
+											$del = $model->delete($id);
+											
+								
+								
+											
+										}
                             	  ?>
 							
 								 
@@ -310,8 +322,8 @@ include 'header_desktop.php';
 										<td><img style="height:50px; width: 50px;" src="<?php echo $row['image']; ?>" alt="">
 										</td>
 										<td>
-											<a href="post_view.php?id=<?php echo $row['id']; ?>" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-											<a href="#deleteEmployeeModal<?php echo $row['id']; ?>" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+											<a href="post_edit.php?id=<?php echo $row['id']; ?>" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+											<a href="del.php?id=<?php echo $row['id']; ?>" name="delete" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
 										</td>
 									</tr>
 								
