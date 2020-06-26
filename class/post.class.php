@@ -58,7 +58,7 @@ class PostQuery extends Database
                                         $query->bindParam('image', $target_file, PDO::PARAM_STR);
                                         $query->execute();
                                         echo "<script>alert('Record Added with image')</script>";
-                                        echo "<script>window.open('portfolio.php','_self')</script>";
+                                        echo "<script>window.open('post_manage.php','_self')</script>";
                                     }
                                 }
                             }

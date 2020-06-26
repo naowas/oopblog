@@ -1,6 +1,12 @@
-    
+<?php 
+
+$model = new blogQuery();
+$rows = $model->portfolio();        
+if (!empty($rows)) {
+	foreach ($rows as $row) {
+		?> 
     <header class="header text-center">	    
-	    <h1 class="blog-name pt-lg-4 mb-0"><a href="index.php"> Naowas <?php // echo $result -> name ; ?> </a></h1>
+	    <h1 class="blog-name pt-lg-4 mb-0"><a href="index.php"><?php echo $row['name']; ?> </a></h1>
         
 	    <nav class="navbar navbar-expand-lg navbar-dark" >
            
@@ -9,10 +15,12 @@
 			</button>
 
 			<div id="navigation" class="collapse navbar-collapse flex-column" >
+
+		
 				<div class="profile-section pt-3 pt-lg-0">
-				    <img class="profile-image mb-3 rounded-circle mx-auto" src="../src/frontend/images/profile.png" alt="image" >			
+				    <img class="profile-image mb-3 rounded-circle mx-auto" src="../admin/<?php echo $row['image_path']; ?>" alt="image" >			
 					
-					<div class="bio mb-3">Hi, my name is <?php //echo $result -> name ; ?> Briefly introduce yourself here. You can also provide a link to the about page.<br><a href="about.html">Find out more about me</a></div><!--//bio-->
+					<div class="bio mb-3">Hi, my name is <?php echo $row['name']; ?> Briefly introduce yourself here. You can also provide a link to the about page.<br><a href="about.php"><?php echo $row['link']; ?></a></div><!--//bio-->
 					<ul class="social-list list-inline py-3 mx-auto">
 			            <li class="list-inline-item"><a href="#"><i class="fab fa-twitter fa-fw"></i></a></li>
 			            <li class="list-inline-item"><a href="#"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
@@ -22,6 +30,11 @@
 			        </ul><!--//social-list-->
 			        <hr> 
 				</div><!--//profile-section-->
+
+				<?php
+			}
+		}
+		?>
 				
 				<ul class="navbar-nav flex-column text-left">
 					<li class="nav-item active">

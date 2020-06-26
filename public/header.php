@@ -1,3 +1,8 @@
+<?php
+include '../class/blog.class.php';
+include '../class/format.class.php';
+
+?>
 <!DOCTYPE html>
 <html lang="en"> 
 <head>
