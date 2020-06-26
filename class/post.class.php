@@ -100,4 +100,26 @@ class PostQuery extends Database
         echo "<script>alert('Record Deleted')</script>";
         echo "<script>window.open('post_manage.php','_self')</script>";
     }
+
+
+    public function postupdate($title, $body, $id)
+    {
+        $now = time();
+
+        $file_name = $_FILES["fileToUpload"]["name"];
+        $temp_file_name = $_FILES["fileToUpload"]["tmp_name"];
+        $file_size = $_FILES["fileToUpload"]["size"];
+        $target_dir = "uploads/";
+        $target_file = strtolower($target_dir.$now . basename($file_name));
+        $img = move_uploaded_file($temp_file_name, $target_file);
+
+        $query = $this->conn->prepare("UPDATE tbl_post SET title = :title, body = :body, image= :image  WHERE id = :id");
+        $query->bindParam("title", $title, PDO::PARAM_STR);
+        $query->bindParam("body", $body, PDO::PARAM_STR);
+        $query->bindParam('image', $target_file, PDO::PARAM_STR);
+        $query->bindParam("id", $id, PDO::PARAM_STR);
+        $query->execute();
+        echo "<script>alert('Post Has been updated')</script>";
+        echo "<script>window.open('post_manage.php','_self')</script>";
+    }
 }

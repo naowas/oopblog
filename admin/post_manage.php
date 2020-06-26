@@ -1,16 +1,10 @@
 <?php
-
-require '../class/post.class.php';
-
-
-
-?>
-
-
-<?php
 include 'header.php';
+Session::checkSession();
 ?>
-
+<?php
+require '../class/post.class.php';
+?>
 <body class="animsition">
     <div class="page-wrapper">
     <?php
@@ -247,13 +241,8 @@ include 'navbar.php';
 	}	
 
 </style>
-
 		<!-- PAGE CONTAINER-->
 		<div class="page-container">
-<?php
-include 'header_desktop.php';
-?>
-
 			<!-- MAIN CONTENT-->
 			<div class="main-content">
 				<div class="section__content section__content--p30">
@@ -262,7 +251,7 @@ include 'header_desktop.php';
 							<div class="table-title">
 								<div class="row">
 									<div class="col-sm-6">
-										<h2>Manage <b>Portfolio</b></h2>
+										<h2>Manage <b>Posts</b></h2>
 									</div>
 									<div class="col-sm-6">
 										<a href="new_post.php" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Record</span></a>
@@ -279,7 +268,7 @@ include 'header_desktop.php';
 												<label for="selectAll"></label>
 											</span>
 										</th>
-										<th>Titlr</th>
+										<th>Title</th>
 										<th>Description</th>
 										<th>Photo</th>
 										<th>Actions</th>

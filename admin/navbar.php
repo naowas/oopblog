@@ -1,3 +1,8 @@
+<?php
+if (isset($_GET['action']) && $_GET['action'] == "logout") {
+    Session::destroy();
+}
+ ?>
         <!-- HEADER MOBILE-->
         <header class="header-mobile d-block d-lg-none">
             <div class="header-mobile__bar">
@@ -121,7 +126,7 @@
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
                 <a href="#">
-                    <img src="admin/images/icon/logo.png" alt="Cool Admin" />
+                    <img src="../src/images/icon/logo.png" alt="Cool Admin" />
                 </a>
             </div>
             <div class="menu-sidebar__content js-scrollbar1">
@@ -131,9 +136,7 @@
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                <li>
-                                    <a href="index.html">Dashboard 1</a>
-                                </li>
+                              
 
 
                             </ul>
@@ -142,7 +145,7 @@
 
                         <li class="active has-sub">
                             <a class="js-arrow" href="#">
-                                <i class="fas fa-tachometer-alt"></i>Post</a>
+                                <i class="fa fa-clipboard"></i>Post</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
                                     <a href="new_post.php">New Post</a>
@@ -158,7 +161,7 @@
 
                         <li class="active has-sub">
                             <a class="js-arrow" href="#">
-                                <i class="fas fa-tachometer-alt"></i>Admin Panel</a>
+                                <i class="fa fa-user-secret"></i>Admin Panel</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
 
                             <li>
@@ -170,11 +173,11 @@
                                 </li>
 
                                 <li>
-                                    <a href="new_post.php">Add User</a>
+                                    <a href="register.php">Add User</a>
                                 </li>
 
                                 <li>
-                                    <a href="index.html">Manage User</a>
+                                    <a href="#">Manage User</a>
                                 </li>
 
                                 
@@ -184,11 +187,11 @@
 
 
                         <li>
-                            <a href="chart.html">
+                            <a href="#">
                                 <i class="fas fa-chart-bar"></i>Messages</a>
                         </li>
                         <li>
-                            <a href="table.html">
+                            <a href="#">
                                 <i class="fas fa-table"></i>Tables</a>
                         </li>
                         
@@ -326,25 +329,41 @@
                                 <div class="account-wrap">
                                     <div class="account-item clearfix js-item-menu">
                                         <div class="image">
-                                            <img src="images/icon/avatar-01.jpg" alt="John Doe" />
+                                            <img src="../src/images/icon/avatar-01.jpg" alt="John Doe" />
                                         </div>
                                         <div class="content">
-                                            <a class="js-acc-btn" href="#">john doe</a>
+                                            <a class="js-acc-btn" href="#">
+                                            <?php 	
+                                            $username = Session::get('username');
+                                            if (isset($username)) {
+                                                echo $username;
+                                            } 
+                                            ?>
+                                            </a>
                                         </div>
                                         <div class="account-dropdown js-dropdown">
                                             <div class="info clearfix">
                                                 <div class="image">
                                                     <a href="#">
-                                                        <img src="images/icon/avatar-01.jpg" alt="John Doe" />
+                                                        <img src="../src/images/icon/avatar-01.jpg" alt="John Doe" />
                                                     </a>
                                                 </div>
                                                 <div class="content">
                                                     <h5 class="name">
-                                                        <a href="#">john doe</a>
+                                                        <a href="#">
+                                                        <?php 	
+                                                    $name = Session::get('name');
+                                                    if (isset($name)) {
+                                                        echo $name;
+                                                    } 
+                                            ?>
+                                             </a>
                                                     </h5>
                                                     <span class="email">johndoe@example.com</span>
                                                 </div>
                                             </div>
+
+                      
                                             <div class="account-dropdown__body">
                                                 <div class="account-dropdown__item">
                                                     <a href="#">
@@ -360,7 +379,7 @@
                                                 </div>
                                             </div>
                                             <div class="account-dropdown__footer">
-                                                <a href="#">
+                                                <a href="?action=logout">
                                                     <i class="zmdi zmdi-power"></i>Logout</a>
                                             </div>
                                         </div>

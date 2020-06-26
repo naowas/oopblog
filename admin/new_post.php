@@ -1,5 +1,11 @@
 <?php
+include 'header.php';
+//include '../class/user.class.php';
+Session::checkSession();
 
+?>
+
+<?php
 require '../class/post.class.php';
 
 $model = new PostQuery;
@@ -7,10 +13,7 @@ $insert = $model->postinsert();
 
 ?>
 
-<?php
-include 'header.php';
 
-?>
 
 <body class="animsition">
     <div class="page-wrapper">
@@ -29,7 +32,7 @@ include 'header.php';
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
                         <div class="row">
-						<form action="" method="post" enctype="multipart/form-data" class="form-horizontal>
+						<form style="width: 100%;" action="" method="post" enctype="multipart/form-data" class="form-horizontal>
                          <div class="col-lg-12">
                                 <div class="card">
                                     <div class="card-header">
@@ -55,7 +58,7 @@ include 'header.php';
                                             $('#body').summernote({
                                                 placeholder: 'Your Post Goes Here',
                                                 tabsize: 2,
-                                                height: 200,                 // set editor height
+                                                height: 350,                 // set editor height
                                                 width: "100%",                 // set editor height
                                                 minHeight: null,             // set minimum height of editor
                                                 maxHeight: null,             // set maximum height of editor

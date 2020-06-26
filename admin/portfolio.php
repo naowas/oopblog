@@ -1,18 +1,14 @@
 <?php
+include 'header.php';
+Session::checkSession();
+?>
+<?php
 
 require '../class/functions.php';
 
 $model = new NaowasQuery;
 $insert = $model->insert();
-
-
 ?>
-
-
-<?php
-include 'header.php';
-?>
-
 <body class="animsition">
     <div class="page-wrapper">
     <?php
@@ -252,9 +248,6 @@ include 'navbar.php';
 
 		<!-- PAGE CONTAINER-->
 		<div class="page-container">
-<?php
-include 'header_desktop.php';
-?>
 
 			<!-- MAIN CONTENT-->
 			<div class="main-content">
