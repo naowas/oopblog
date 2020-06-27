@@ -293,10 +293,12 @@ include 'navbar.php';
 											$del = $model->delete($id);
 											
 								
-								
+											
+
 											
 										}
-                            	  ?>
+								  ?>
+								  
 							
 								 
 									<tr>
@@ -307,7 +309,7 @@ include 'navbar.php';
 											</span>
 										</td>
 										<td><?php echo $row['title']; ?></td>
-										<td><?php echo $row['body']; ?></td>
+										<td><?php echo $model->textShorten($row['body']); ?></td>
 										<td><img style="height:50px; width: 50px;" src="<?php echo $row['image']; ?>" alt="">
 										</td>
 										<td>

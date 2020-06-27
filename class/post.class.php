@@ -122,4 +122,13 @@ class PostQuery extends Database
         echo "<script>alert('Post Has been updated')</script>";
         echo "<script>window.open('post_manage.php','_self')</script>";
     }
+
+
+    public function textShorten($text, $limit = 300)
+    {
+        $text = $text. " ";
+        $text = substr($text, 0, $limit); //Limit- how much word will show your post
+        $text = substr($text, 0, strrpos($text, ' ')); //its breaks string in space
+        return $text;
+    }
 }

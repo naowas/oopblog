@@ -7,7 +7,7 @@ class blogQuery extends Database
 
         $data = null;
 
-        $query = "SELECT * FROM tbl_post LIMIT 3";
+        $query = "SELECT * FROM tbl_post ORDER BY id ASC";
         return $data = $this->conn->query($query);
 
     }
