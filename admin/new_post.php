@@ -44,7 +44,7 @@ $insert = $model->postinsert();
                                     <div class="card-body card-block">
                                         <div class="form-group">
                                             <label for="title" class=" form-control-label">Title</label>
-                                            <input type="text" name="title" id="title" placeholder="Enter your title" class="form-control">
+                                            <textarea  name="title" id="title" placeholder="Enter your title" class="form-control"> </textarea>
                                         </div>
 
                                         <div class="form-group">

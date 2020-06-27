@@ -1,6 +1,6 @@
 <?php
 
-include_once 'Session.php';
+include_once 'session.php';
 include 'db.php';
 
 class User extends Database {

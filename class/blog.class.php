@@ -24,5 +24,18 @@ class blogQuery extends Database
 
 
 
+    public function fetchbyid($id)
+	{
+		$data = $this->conn->prepare("SELECT * FROM tbl_post WHERE id = :id");
+		$data->execute(array (':id' => $id));
+
+		foreach ($data as $value) {
+			return $value;
+		}
+    }
+    
+
+
+
 
 }    
