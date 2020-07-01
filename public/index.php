@@ -1,13 +1,8 @@
 <?php
-
-//include '../class/functions.php';
-
 include 'header.php';
-
 ?>
 
 <body>
-
 <?php
 include 'portfolio.php';
 ?>
@@ -31,13 +26,13 @@ include 'portfolio.php';
 $fm = new Format();
 ?>
 
-			<?php 
+<?php 
 
 $model = new blogQuery();
 $rows = $model->blogpost();        
 if (!empty($rows)) {
     foreach ($rows as $row) {
-        ?>
+?>
 
 			    <div class="item mb-5">
 				    <div class="media">

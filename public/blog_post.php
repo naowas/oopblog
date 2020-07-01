@@ -12,10 +12,10 @@ include 'portfolio.php';
     
     <div class="main-wrapper">
 	<?php
-                                        $model = new blogQuery;
-                                        $id = $_REQUEST['id'];
-                                        $row = $model->fetchbyid($id);
-                                        ?> 
+    $model = new blogQuery;
+    $id = $_REQUEST['id'];
+    $row = $model->fetchbyid($id);
+    ?> 
 	    
 	    <article class="blog-post px-3 py-5 p-md-5">
 		    <div class="container">
