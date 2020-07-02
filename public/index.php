@@ -2,60 +2,131 @@
 include 'header.php';
 ?>
 
+
+<style>
+
+.topnav {
+  overflow: hidden;
+  background-color: #e9e9e9;
+}
+
+.topnav a {
+  float: left;
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #2196F3;
+  color: white;
+}
+
+.topnav input[type=text] {
+  float: right;
+  padding: 6px;
+  margin-top: 8px;
+  margin-right: 16px;
+  border: none;
+  font-size: 17px;
+}
+
+@media screen and (max-width: 600px) {
+  .topnav a, .topnav input[type=text] {
+    float: none;
+    display: block;
+    text-align: left;
+    width: 100%;
+    margin: 0;
+    padding: 14px;
+  }
+  
+  .topnav input[type=text] {
+    border: 1px solid #ccc;  
+  }
+}
+</style>
 <body>
 <?php
 include 'portfolio.php';
 ?>
 <div class="main-wrapper">
-	    <section class="cta-section theme-bg-light py-5">
-		    <div class="container text-center">
-			    <h2 class="heading">DevBlog - A Blog Template Made For Developers</h2>
-			    <div class="intro">Welcome to my blog. Subscribe and get my latest blog post in your inbox.</div>
-			    <form class="signup-form form-inline justify-content-center pt-3">
-                    <div class="form-group">
-                        <label class="sr-only" for="semail">Your email</label>
-                        <input type="email" id="semail" name="semail1" class="form-control mr-md-1 semail" placeholder="Enter email">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Subscribe</button>
-                </form>
-		    </div><!--//container-->
-	    </section>
+<div class="topnav">
+  <a class="active" href="#home">Home</a>
+  <a href="#about">About</a>
+  <a href="#contact">Contact</a>
+  <input type="text" placeholder="Search..">
+</div>
 	    <section class="blog-list px-3 py-5 p-md-5">
 		    <div class="container">
 <?php
-$fm = new Format();
+$format= new Format();
 ?>
+
+  <!-- Pagination -->
+  <?php 
+        $per_page = 3;
+        if (isset($_GET['page'])) {
+            $page = $_GET['page'];
+        } else {
+            $page = 1;
+        }
+        $start_from = ($page-1)*$per_page;
+         ?>
+
+        <!-- Pagination -->
+
 
 <?php 
 
 $model = new blogQuery();
-$rows = $model->blogpost();        
-if (!empty($rows)) {
-    foreach ($rows as $row) {
-?>
+$rows= $model -> blogpost($start_from, $per_page);
+foreach ($rows as $row) {
+    ?>
 
 			    <div class="item mb-5">
 				    <div class="media">
 					    <img class="mr-3 img-fluid post-thumb d-none d-md-flex" src="../admin/<?php echo $row['image']; ?>" alt="image">
 					    <div class="media-body">
 						    <h3 class="title mb-1"><a href="blog_post.php?id=<?php echo $row['id']; ?>"><?php echo $row['title']; ?></a></h3>
-						    <div class="meta mb-1"><span class="date">Published <?php echo $fm->formatDate( $row['date']); ?></span><span class="comment"><a href="#">26 comments</a></span></div>
-						    <div class="intro"><?php echo $fm->textShorten($row['body']); ?></div>
+						    <div class="meta mb-1"><span class="date">Published <?php echo $format->formatDate($row['date']); ?></span><span class="comment"><a href="#">26 comments</a></span></div>
+						    <div class="intro"><?php echo $format->textShorten($row['body']); ?></div>
 						    <a class="more-link" href="blog_post.php?id=<?php echo $row['id']; ?>">Read more &rarr;</a>
 					    </div><!--//media-body-->
 				    </div><!--//media-->
 			    </div><!--//item-->
 			    
 		<?php
-    }
 }
 ?>	 
 			    
 			    
-			    <nav class="blog-nav nav nav-justified my-5">
-				  <a class="nav-link-prev nav-item nav-link d-none rounded-left" href="#">Previous<i class="arrow-prev fas fa-long-arrow-alt-left"></i></a>
-				  <a class="nav-link-next nav-item nav-link rounded" href="blog_list.php">Next<i class="arrow-next fas fa-long-arrow-alt-right"></i></a>
-				</nav>
+			      <!-- Blog Pagination Start -->
+
+            <?php 
+
+            $model = new blogQuery();
+            $rows= $model -> pagination();
+            
+            //$row_count= $query->rowCount();
+
+            $total_pages = ceil($row_count/$per_page);
+            echo "<span class='pagination'><a href='index.php?page=1'>".'First Page'."</a>";
+            for ($i = 1; $i <= $total_pages; $i++) {
+                echo "<a href='index.php?page=".$i."'>".$i."</a>";
+            }
+
+            echo "<a href='index.php?page=$total_pages'>".'Last Page'."</a></span>" ?>
+
+            <!-- Blog Pagination End -->
 				
 		    </div>
 	    </section>
