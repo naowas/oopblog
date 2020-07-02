@@ -11,7 +11,7 @@ class Format
         $text = $text. " ";
         $text = substr($text, 0, $limit); //Limit- how much word will show your post
         $text = substr($text, 0, strrpos($text, ' ')); //its breaks string in space
-        $text = $text."........";
+        $text = $text."...";
         return $text;
     }
 

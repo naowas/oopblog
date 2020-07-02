@@ -63,8 +63,8 @@ foreach ($rows as $row) {
 					    <div class="media-body">
 						    <h3 class="title mb-1"><a href="blog_post.php?id=<?php echo $row['id']; ?>"><?php echo $row['title']; ?></a></h3>
 						    <div class="meta mb-1"><span class="date">Published <?php echo $format->formatDate($row['date']); ?></span><span class="comment"><a href="#">26 comments</a></span></div>
-						    <div class="intro"><?php echo $format->textShorten($row['body']); ?></div>
-						    <a class="more-link" href="blog_post.php?id=<?php echo $row['id']; ?>">Read more &rarr;</a>
+						    <div class="intro"><?php echo $format->textShorten($row['body']); ?>  <a class="more-link" href="blog_post.php?id=<?php echo $row['id']; ?>">Read more &rarr;</a></div>
+						   
 					    </div><!--//media-body-->
 				    </div><!--//media-->
 			    </div><!--//item-->
