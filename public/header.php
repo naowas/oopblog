@@ -6,10 +6,11 @@ include '../class/format.class.php';
 <!DOCTYPE html>
 <html lang="en"> 
 <head>
-    <title>Bootstrap 4 Blog Template For Developers</title>
+    <title>Devs blog</title>
     
     <!-- Meta -->
     <meta charset="utf-8">
+    <meta Content-Type: text/html>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Blog Template">
@@ -21,5 +22,9 @@ include '../class/format.class.php';
     
     <!-- Theme CSS -->  
     <link id="theme-style" rel="stylesheet" href="../src/frontend/css/theme-1.css">
+
+    <style>
+        
+    </style>
 
 </head> 

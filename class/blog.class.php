@@ -40,7 +40,8 @@ class blogQuery extends Database
         $query = $this->conn->prepare("SELECT * FROM tbl_post");
         $query->execute();
         $row_count= $query->rowCount();
-        echo "Table have ".$row_count. " rows";
+       // echo "Table have ".$row_count. " rows";
+        return $row_count;
 
     }
     
@@ -66,6 +67,31 @@ class blogQuery extends Database
 
 
     // }
+
+
+    // public function searchpost($search_keyword){
+       
+    //     $sql = 'SELECT * FROM tbl_post WHERE title LIKE :keyword ORDER BY id DESC ';
+
+
+    //     $pdo_statement =$this->conn->prepare($sql);
+    //     $pdo_statement->bindValue(':keyword', '%' . $search_keyword . '%', PDO::PARAM_STR);
+    //     $pdo_statement->execute();
+    //     $result = $pdo_statement->fetchAll();
+
+
+
+    // }
+
+
+    public function blogpostsearch($search, $start_from, $per_page){
+
+        $data = null;
+
+        $query = "SELECT * FROM tbl_post WHERE title LIKE '%$search%' OR body LIKE '%$search%' LIMIT $start_from, $per_page";
+        return $data = $this->conn->query($query);
+
+    }
 
 
 }    

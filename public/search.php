@@ -1,3 +1,14 @@
+
+<?php 
+$search = $_GET['search'];
+if (!isset($search) || $search == null) {
+    header("Location:404.php");
+} else {
+    $search = $search;
+}
+
+ ?>
+
 <?php
 include 'header.php';
 ?>
@@ -24,9 +35,8 @@ include 'portfolio.php';
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0" action="search.php" method="GET">
-    <input class="form-control mr-sm-2" name="search"  id="search"  placeholder="Search" aria-label="Search">
+      <input class="form-control mr-sm-2" name="search"  id="search"  placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit" value="search">Search</button>
-      
     </form>
   </div>
 </nav>
@@ -53,7 +63,7 @@ $format= new Format();
 <?php 
 
 $model = new blogQuery();
-$rows= $model -> blogpost($start_from, $per_page);
+$rows= $model -> blogpostsearch($search, $start_from, $per_page);
 foreach ($rows as $row) {
     ?>
 

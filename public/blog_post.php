@@ -12,9 +12,16 @@ include 'portfolio.php';
     
     <div class="main-wrapper">
 	<?php
-    $model = new blogQuery;
+	$model = new blogQuery;
+	$rows= $model -> pagination();
+	$row_count=$rows;
     $id = $_REQUEST['id'];
-    $row = $model->fetchbyid($id);
+	$row = $model->fetchbyid($id);
+	$next = ++$id;
+	$previous= --$id;
+	// for($i=0; $i=$row_count; $i++){
+	// 	$next = ++$id;
+	// }
     ?> 
 	    
 	    <article class="blog-post px-3 py-5 p-md-5">
@@ -30,8 +37,8 @@ include 'portfolio.php';
 			    </div>
 				    
 			    <nav class="blog-nav nav nav-justified my-5">
-				  <a class="nav-link-prev nav-item nav-link rounded-left" href="index.html">Previous<i class="arrow-prev fas fa-long-arrow-alt-left"></i></a>
-				  <a class="nav-link-next nav-item nav-link rounded-right" href="blog-list.html">Next<i class="arrow-next fas fa-long-arrow-alt-right"></i></a>
+				  <a class="nav-link-prev nav-item nav-link rounded-left" href="blog_post.php?id=<?php echo $previous?>">Previous<i class="arrow-prev fas fa-long-arrow-alt-left"></i></a>
+				  <a class="nav-link-next nav-item nav-link rounded-right" href="blog_post.php?id=<?php echo $next?>">Next<i class="arrow-next fas fa-long-arrow-alt-right"></i></a>
 				</nav>
 				
 				<div class="blog-comments-section">

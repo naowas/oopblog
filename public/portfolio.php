@@ -1,3 +1,4 @@
+
 <?php 
 
 $model = new blogQuery();
@@ -18,9 +19,10 @@ if (!empty($rows)) {
 
 		
 				<div class="profile-section pt-3 pt-lg-0">
-				    <img class="profile-image mb-3 rounded-circle mx-auto" src="../admin/<?php echo $row['image_path']; ?>" alt="image" >			
+				    <img class="profile-image mb-3 img-circle mx-auto" src="../admin/<?php echo $row['image_path']; ?>" alt="image" >			
 					
-					<div class="bio mb-3">Hi, my name is <?php echo $row['name']; ?> Briefly introduce yourself here. You can also provide a link to the about page.<br><a href="about.php"><?php echo $row['link']; ?></a></div><!--//bio-->
+					<div class="bio mb-3">Hi, 
+						my name is <?php echo $row['name']; ?> Briefly introduce yourself here. You can also provide a link to the about page.<br><a href="about.php"><?php echo $row['link']; ?></a></div><!--//bio-->
 					<ul class="social-list list-inline py-3 mx-auto">
 			            <li class="list-inline-item"><a href="#"><i class="fab fa-twitter fa-fw"></i></a></li>
 			            <li class="list-inline-item"><a href="#"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
@@ -40,9 +42,9 @@ if (!empty($rows)) {
 					<li class="nav-item active">
 					    <a class="nav-link" href="index.php"><i class="fas fa-home fa-fw mr-2"></i>Blog Home <span class="sr-only">(current)</span></a>
 					</li>
-					<li class="nav-item">
+					<!-- <li class="nav-item">
 					    <a class="nav-link" href="blog-post.php"><i class="fas fa-bookmark fa-fw mr-2"></i>Blog Post</a>
-					</li>
+					</li> -->
 					<li class="nav-item">
 					    <a class="nav-link" href="about.php"><i class="fas fa-user fa-fw mr-2"></i>About Me</a>
 					</li>
